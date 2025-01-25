@@ -1,11 +1,11 @@
 class TaskController < ApplicationController
   def show
-  end
-
-  def create
     render json: { 'success' => true,
                    'result' => TaskBlueprint.render(@task, view: :base) },
            status: :ok
+  end
+
+  def create
   end
 
   def index
