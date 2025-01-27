@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'API::V1::Tasks', type: :request do
-  let!(:task) { Task.create(title: 'Test Task', description: 'Test Description', status: 'pending') }
+  let!(:task) { create(:task, title: 'Test Task', description: 'Test Description', status: 'pending') }
 
   describe 'GET /api/v1/tasks' do
     it 'returns http success' do
