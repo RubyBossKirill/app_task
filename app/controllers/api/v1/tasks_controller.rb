@@ -12,7 +12,7 @@ class Api::V1::TasksController < ApplicationController
     render_resource_errors(outcome) if outcome.errors.present?
     render json: { 'success' => true,
                    'result': TaskBlueprint.render_as_hash(outcome.result, view: :base) },
-           status: :ok
+           status: :created
   end
 
   def index

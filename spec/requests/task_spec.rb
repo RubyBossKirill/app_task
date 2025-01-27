@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'API::V1::Tasks', type: :request do
+RSpec.describe 'Api::V1::Tasks', type: :request do
   let!(:task) { create(:task, title: 'Test Task', description: 'Test Description', status: 'pending') }
 
   describe 'GET /api/v1/tasks' do
@@ -20,7 +20,7 @@ RSpec.describe 'API::V1::Tasks', type: :request do
   describe 'POST /api/v1/tasks' do
     it 'creates a new task' do
       post '/api/v1/tasks',
-           params: { task: { title: 'New Task', description: 'New Description', status: 'in_progress' } }
+           params: { title: 'New Task', description: 'New Description', status: 'in_progress' }
       expect(response).to have_http_status(:created)
     end
   end
