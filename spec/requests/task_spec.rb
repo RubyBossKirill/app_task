@@ -1,38 +1,27 @@
 require 'rails_helper'
 
-RSpec.describe 'Tasks', type: :request do
-  describe 'GET /show' do
+RSpec.describe 'API::V1::Tasks', type: :request do
+  let!(:task) { Task.create(title: 'Test Task', description: 'Test Description', status: 'pending') }
+
+  describe 'GET /api/v1/tasks' do
     it 'returns http success' do
-      get '/task/show'
+      get '/api/v1/tasks'
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe 'GET /index' do
+  describe 'GET /api/v1/tasks/:id' do
     it 'returns http success' do
-      get '/task/index'
+      get "/api/v1/tasks/#{task.id}"
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe 'GET /update' do
-    it 'returns http success' do
-      get '/task/update'
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET /destroy' do
-    it 'returns http success' do
-      get '/task/destroy'
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe 'GET /create' do
-    it 'returns http success' do
-      get '/task/create'
-      expect(response).to have_http_status(:success)
+  describe 'POST /api/v1/tasks' do
+    it 'creates a new task' do
+      post '/api/v1/tasks',
+           params: { task: { title: 'New Task', description: 'New Description', status: 'in_progress' } }
+      expect(response).to have_http_status(:created)
     end
   end
 end

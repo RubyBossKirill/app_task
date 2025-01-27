@@ -2,7 +2,7 @@ class TaskBlueprint < Blueprinter::Base
   identifier :id
 
   view :base do
-    fields :task_id, :title, :description, :status
+    fields :title, :description, :status
   end
 
   view :extend do
