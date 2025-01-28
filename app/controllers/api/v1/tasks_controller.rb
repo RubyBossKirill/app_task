@@ -11,7 +11,7 @@ class Api::V1::TasksController < ApplicationController
     outcome = Task::Create.run(params)
     render_resource_errors(outcome) if outcome.errors.present?
     render json: { 'success' => true,
-                   'result': TaskBlueprint.render_as_hash(outcome.result, view: :base) },
+                   'result' => TaskBlueprint.render_as_hash(outcome.result, view: :base) },
            status: :created
   end
 
@@ -19,15 +19,16 @@ class Api::V1::TasksController < ApplicationController
     outcome = Task::Index.run
     render_resource_errors(outcome) if outcome.errors.present?
     render json: { 'success' => true,
-                   'result': TaskBlueprint.render_as_hash(outcome.result, view: :base) },
+                   'result' => TaskBlueprint.render_as_hash(outcome.result, view: :base) },
            status: :ok
   end
 
   def update
     outcome = Task::Update.run(params.merge!(task: @task))
     render_resource_errors(outcome) if outcome.errors.present?
+
     render json: { 'success' => true,
-                   'result': TaskBlueprint.render_as_hash(outcome.result, view: :base) },
+                   'result': TaskBlueprint.render(outcome, view: :base) },
            status: :ok
   end
 
