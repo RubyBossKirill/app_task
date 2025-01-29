@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::Tasks', type: :request do # rubocop:disable Metrics/BlockLength
-  let!(:task) { create(:task, title: 'Test Task', description: 'Test Description', status: 'pending') }
+  let!(:task) { create(:task) }
   let!(:params) do
     {
       'title' => 'New Task',

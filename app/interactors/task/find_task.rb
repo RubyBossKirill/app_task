@@ -2,7 +2,7 @@ class Task::FindTask < ActiveInteraction::Base # rubocop:disable Style/Documenta
   string :id
   def execute
     task = Task.find_by(id:)
-    return errors.add(:id, 'Task not found') unless task.save
+    return errors.add(:id, 'Task not found') unless task
 
     task
   end

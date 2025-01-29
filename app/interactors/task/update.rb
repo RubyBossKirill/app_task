@@ -1,5 +1,5 @@
 class Task::Update < ActiveInteraction::Base
-  object :tasks, class: Task
+  object :task, class: Task
   string :title, :description, :status
   integer :id
 
